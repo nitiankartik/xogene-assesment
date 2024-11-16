@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 
 const DrugPage = () => {
 
   const [data, setData] = useState();
   const rxcui = useParams();
-  console.log(rxcui.rxcui)
+  const location = useLocation();
+  const info = location.state;
 
+  
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxcui.rxcui}/ndcs.json`);
@@ -21,9 +23,9 @@ const DrugPage = () => {
     <div>
       <h2>Details page</h2>
       <br />
-      Name: 
+      Name: {info.name}
       <br />
-      Synonym: 
+      Synonym: {info.synonym}
       <br />
       NDC: 
       {data && data.map((item, index) => (

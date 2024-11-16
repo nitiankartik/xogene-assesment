@@ -53,7 +53,7 @@ const SearchPage = () => {
           {item?.conceptProperties && item?.conceptProperties?.map((object, rxcui) => (
             <ul key={rxcui}>
               <li>
-              <Link to={`/drugs/${object.rxcui}`} >
+              <Link to= {`/drugs/${object.rxcui}`} state={object} >
                 {object.name}
               </Link>
                 </li>
